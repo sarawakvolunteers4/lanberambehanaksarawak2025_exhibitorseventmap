@@ -1,0 +1,297 @@
+/* ------------------ BASE STYLES ------------------ */
+body {
+  font-family: Open Sans, sans-serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background: url("images/background.png") no-repeat center center fixed;
+  background-size: cover;
+  color: rgb(0, 0, 0);
+}
+
+/* ------------------ HEADER ------------------ */
+header {
+  background: linear-gradient(135deg, #617b9b, #f7f7f7);
+  padding: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.header-logos {
+  display: flex;
+  justify-content: center;   /* centers both logos together */
+  align-items: center;
+  gap: 20px;                 /* space between logos */
+  padding: 10px 0;
+}
+
+#header-logo,
+#partner-logo {
+  height: auto;
+  max-width: 150px;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+#header-logo:hover,
+#partner-logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* Make both responsive on smaller screens */
+@media (max-width: 600px) {
+  #header-logo,
+  #partner-logo {
+    max-width: 70px;
+    padding: 1px 0;
+  }
+  .header-logos {
+    gap: 10px;
+  }
+}
+
+#header-logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.4));
+}
+
+/* ------------------ OVERVIEW ------------------ */
+.levels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.level-item {
+  width: 100%;
+  max-width: 800px;
+}
+
+.level-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, opacity 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.level-item img:hover {
+  transform: scale(1.03);
+  opacity: 0.95;
+}
+
+/* ------------------ LIGHTBOX ------------------ */
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 40px 10px;
+  box-sizing: border-box;
+}
+
+#lightbox.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-content {
+  position: relative;
+  background: white;
+  color: black;
+  border-radius: 15px;
+  padding: 25px 30px 30px;
+  max-width: 90%;
+  width: 480px;
+  text-align: center;
+  animation: fadeInZoom 0.5s ease;
+  margin: 60px auto;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #555;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.close-btn:hover {
+  transform: scale(1.2);
+  color: #ff4d4d;
+}
+
+/* ------------------ ANIMATIONS ------------------ */
+@keyframes fadeInZoom {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.hidden { display: none; }
+
+/* ------------------ BOOTH SECTION ------------------ */
+.booth-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.booth-buttons button {
+  width: 45px;
+  height: 45px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0077b6, #00b4d8);
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
+.booth-buttons button:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #0096c7, #48cae4);
+}
+
+.booth-buttons button:active {
+  transform: scale(0.95);
+}
+
+.booth-info {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: block;
+  text-align: left;
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+  width: 100%;
+  animation: fadeIn 0.4s ease;
+}
+
+/* scrollbar styling */
+.booth-info::-webkit-scrollbar {
+  height: 8px;
+}
+.booth-info::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+/* ------------------ BOOTH IMAGE SIZES ------------------ */
+/* Default (centered) */
+.booth-info img {
+  display: block;
+  margin: 15px auto 0;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Booth 1 & 2 — slightly larger */
+.booth-info img[src*="booth1_kementerian"],
+.booth-info img[src*="booth2_energystreet"] {
+  max-width: 200px !important;
+  width: 100% !important;
+}
+
+/* Booth 3 — larger */
+.booth-info img[src*="booth3_kampungkamek"] {
+  max-width: 500px !important;
+  width: 100% !important;
+}
+
+/* Booth 4 — standard */
+.booth-info img[src*="booth4_treasures"] {
+  max-width: 500px !important;
+  width: 100% !important;
+}
+
+/* Horizontal booths (5, 8, 9, 10) */
+.booth-info img[src*="booth5"],
+.booth-info img[src*="booth8"],
+.booth-info img[src*="booth9"],
+.booth-info img[src*="booth10"] {
+  width: auto !important;
+  max-width: none !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  border-radius: 12px;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 600px) {
+  .booth-info img[src*="booth5"],
+  .booth-info img[src*="booth8"],
+  .booth-info img[src*="booth9"],
+  .booth-info img[src*="booth10"] {
+    height: 120px !important;
+  }
+}
+
+/* ------------------ BUTTONS ------------------ */
+.back-btn {
+  margin-top: 15px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #333;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.back-btn:hover {
+  background: #555;
+}
+
+/* ------------------ RESPONSIVE ------------------ */
+@media (max-width: 768px) {
+  #header-logo { width: 35%; }
+  .lightbox-content { width: 85%; padding: 20px; }
+  h1 { font-size: 1.6rem; }
+  h2 { font-size: 1.3rem; }
+  p { font-size: 0.95rem; }
+}
+
+@media (max-width: 480px) {
+  #header-logo { width: 50%; }
+  .lightbox-content { width: 90%; padding: 18px; }
+  h1 { font-size: 1.3rem; }
+  h2 { font-size: 1.1rem; }
+  p { font-size: 0.9rem; }
+  .booth-buttons button { width: 40px; height: 40px; font-size: 14px; }
+  .booth-info img { max-width: 160px; }
+
+}
